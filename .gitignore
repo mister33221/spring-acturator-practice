@@ -4,6 +4,7 @@
 *.jar
 *.war
 *.ear
+!.mvn/wrapper/maven-wrapper.jar
 
 # Maven
 
