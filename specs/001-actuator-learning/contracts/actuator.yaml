@@ -1,0 +1,73 @@
+﻿openapi: 3.0.3
+info:
+  title: Actuator Learning API
+  version: 0.1.0
+  description: 學習用 Actuator 端點合約
+servers:
+  - url: http://localhost:8080
+paths:
+  /actuator/health:
+    get:
+      summary: 取得健康狀態
+      responses:
+        "200":
+          description: 健康狀態
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/info:
+    get:
+      summary: 取得應用資訊摘要
+      responses:
+        "200":
+          description: 應用資訊
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/metrics:
+    get:
+      summary: 取得度量清單
+      responses:
+        "200":
+          description: 度量清單
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/metrics/{name}:
+    get:
+      summary: 取得指定度量細節
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 度量細節
+          content:
+            application/json:
+              schema:
+                type: object
+  /demo/failure:
+    post:
+      summary: 設定預設異常情境
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+      responses:
+        "200":
+          description: 設定結果
+          content:
+            application/json:
+              schema:
+                type: object

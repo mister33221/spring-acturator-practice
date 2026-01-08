@@ -1,0 +1,37 @@
+﻿server:
+  port: 8080
+
+info:
+  app:
+    name: actuator-learning
+    version: 0.2.0
+    environment: local
+    description: Actuator 常用端點學習專案
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,loggers,mappings,beans,conditions,env,configprops,threaddump,httpexchanges
+  endpoint:
+    health:
+      show-details: ALWAYS
+      probes:
+        enabled: true
+    env:
+      show-values: ALWAYS
+    configprops:
+      show-values: ALWAYS
+    httpexchanges:
+      enabled: true
+  info:
+    env:
+      enabled: true
+    git:
+      enabled: true
+    build:
+      enabled: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} level=%level logger=%logger{36} msg=%msg%n"

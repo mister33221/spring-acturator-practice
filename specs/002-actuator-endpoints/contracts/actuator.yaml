@@ -1,0 +1,189 @@
+﻿openapi: 3.0.3
+info:
+  title: Actuator Endpoints Learning API
+  version: 0.2.0
+  description: 常用 Actuator 端點學習合約
+servers:
+  - url: http://localhost:8080
+paths:
+  /actuator/health:
+    get:
+      summary: 取得整體健康狀態
+      responses:
+        "200":
+          description: 健康狀態
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/health/liveness:
+    get:
+      summary: 取得 Liveness 狀態
+      responses:
+        "200":
+          description: Liveness
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/health/readiness:
+    get:
+      summary: 取得 Readiness 狀態
+      responses:
+        "200":
+          description: Readiness
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/info:
+    get:
+      summary: 取得應用資訊
+      responses:
+        "200":
+          description: 應用資訊
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/metrics:
+    get:
+      summary: 取得度量清單
+      responses:
+        "200":
+          description: 度量清單
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/metrics/{name}:
+    get:
+      summary: 取得指定度量細節
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 度量細節
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/prometheus:
+    get:
+      summary: 取得 Prometheus 格式指標
+      responses:
+        "200":
+          description: Prometheus 指標
+          content:
+            text/plain:
+              schema:
+                type: string
+  /actuator/loggers:
+    get:
+      summary: 取得 Logger 清單
+      responses:
+        "200":
+          description: Logger 清單
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/loggers/{name}:
+    post:
+      summary: 設定指定 Logger 層級
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                configuredLevel:
+                  type: string
+      responses:
+        "200":
+          description: 設定結果
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/mappings:
+    get:
+      summary: 取得路由映射
+      responses:
+        "200":
+          description: 路由映射
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/beans:
+    get:
+      summary: 取得 Bean 清單
+      responses:
+        "200":
+          description: Bean 清單
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/conditions:
+    get:
+      summary: 取得條件判斷結果
+      responses:
+        "200":
+          description: 條件判斷
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/env:
+    get:
+      summary: 取得環境變數與設定
+      responses:
+        "200":
+          description: 環境資訊
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/configprops:
+    get:
+      summary: 取得設定綁定結果
+      responses:
+        "200":
+          description: 設定綁定結果
+          content:
+            application/json:
+              schema:
+                type: object
+  /actuator/threaddump:
+    get:
+      summary: 取得執行緒資訊
+      responses:
+        "200":
+          description: 執行緒資訊
+          content:
+            text/plain:
+              schema:
+                type: string
+  /actuator/httpexchanges:
+    get:
+      summary: 取得 HTTP 追蹤內容
+      responses:
+        "200":
+          description: 追蹤內容
+          content:
+            application/json:
+              schema:
+                type: object
